@@ -51,13 +51,14 @@ impl AccessSet {
         self.fill_semaphore_targets(&mut partial_witness, private_key, topic, public_key_index, targets);
 
         let data = builder.build();
-        let proof = data.prove(partial_witness);
+        let proof = data.prove(partial_witness).unwrap();
 
         Ok((
             Signal {
                 nullifier,
                 proof: proof.proof,
-            }
+            },
+            data.verifier_data(),
         ))
     }
 }
