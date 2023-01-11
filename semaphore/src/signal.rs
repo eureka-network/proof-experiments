@@ -17,13 +17,13 @@ pub struct Signal {
 mod tests {
     use anyhow::Result;
     use plonky2::field::types::{Field, Sample};
-    use plonky2::field::goldilocks_field::GoldilocksField;
+    // use plonky2::field::goldilocks_field::GoldilocksField;
     use plonky2::hash::merkle_tree::MerkleTree;
     use plonky2::hash::poseidon::PoseidonHash;
     use plonky2::plonk::config::Hasher;
 
     use crate::access_set::AccessSet;
-    use crate::signal::{Digest, F, C};
+    use crate::signal::{Digest, F};
 
     #[test]
     fn test_semaphore() -> Result<()> {
