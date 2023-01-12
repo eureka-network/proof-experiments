@@ -54,7 +54,7 @@ impl<F: RichField + Extendable<D>, const D: usize, const N: u64> SimpleGenerator
 }
 
 #[allow(dead_code)]
-fn simulate() -> Result<()> {
+fn main() -> Result<()> {
     const D: usize = 2;
     const N: u64 = 3; // 3 | p - 1, where p = 2^64 - 2^32 + 1
     type C = PoseidonGoldilocksConfig;
