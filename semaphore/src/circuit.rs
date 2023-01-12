@@ -74,7 +74,7 @@ impl AccessSet {
         targets: SemaphoreTargets,
     ) {
         let SemaphoreTargets {
-            merkle_root: merkle_root,
+            merkle_root,
             topic: topic_target,
             merkle_proof: merkle_proof_target,
             private_key: private_key_target,
