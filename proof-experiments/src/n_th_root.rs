@@ -1,7 +1,8 @@
 use std::marker::PhantomData;
 
 use anyhow::Result;
-use plonky2::field::types::{PrimeField, Sample};
+use plonky2::field::extension::Extendable;
+use plonky2::field::types::{Field, PrimeField, Sample};
 use plonky2::hash::hash_types::RichField;
 use plonky2::iop::generator::SimpleGenerator;
 use plonky2::iop::target::Target;
@@ -9,7 +10,6 @@ use plonky2::iop::witness::{PartialWitness, Witness, WitnessWrite};
 use plonky2::plonk::circuit_builder::CircuitBuilder;
 use plonky2::plonk::circuit_data::CircuitConfig;
 use plonky2::plonk::config::{GenericConfig, PoseidonGoldilocksConfig};
-use plonky2_field::extension::Extendable;
 
 /// A generator to compute the n-th root of a given value x, outside the circuit,
 /// so it can be used as an additional public input
@@ -53,7 +53,8 @@ impl<F: RichField + Extendable<D>, const D: usize, const N: u64> SimpleGenerator
     }
 }
 
-fn main() -> Result<()> {
+#[allow(dead_code)]
+fn simulate() -> Result<()> {
     const D: usize = 2;
     const N: u64 = 3; // 3 | p - 1, where p = 2^64 - 2^32 + 1
     type C = PoseidonGoldilocksConfig;
@@ -72,8 +73,6 @@ fn main() -> Result<()> {
         x_pow_n,
         _phantom: PhantomData,
     });
-
-    use plonky2_field::types::Field;
 
     // randomly generate a N-th root of x
     let euler = F::NEG_ONE.to_canonical_biguint() / N;
