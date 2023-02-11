@@ -1,9 +1,11 @@
 use anyhow::Result;
-use plonky2::iop::witness::{PartialWitness, WitnessWrite};
 use plonky2::field::types::Field;
-use plonky2::plonk::circuit_data::CircuitConfig;
+use plonky2::iop::witness::{PartialWitness, WitnessWrite};
 use plonky2::plonk::circuit_builder::CircuitBuilder;
+use plonky2::plonk::circuit_data::CircuitConfig;
 use plonky2::plonk::config::{GenericConfig, PoseidonGoldilocksConfig};
+
+mod halo2_example;
 
 // replay fibonacci with Plonky2
 fn main() -> Result<()> {
@@ -35,7 +37,6 @@ fn main() -> Result<()> {
     let mut partial_witness = PartialWitness::new();
     partial_witness.set_target(initial_a, F::ZERO);
     partial_witness.set_target(initial_b, F::ONE);
-    builder.register_public_input(cur_target);
 
     use std::time::Instant;
     let now = Instant::now();
