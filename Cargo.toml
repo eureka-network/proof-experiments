@@ -3,4 +3,5 @@
 members = [
     "proof-experiments",
     "semaphore",
+    "gadgets",
 ]
