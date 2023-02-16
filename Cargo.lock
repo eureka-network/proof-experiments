@@ -125,6 +125,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "gadgets"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "plonky2",
+]
+
+[[package]]
 name = "getrandom"
 version = "0.2.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -299,10 +307,6 @@ dependencies = [
  "hermit-abi",
  "libc",
 ]
-
-[[package]]
-name = "observable"
-version = "0.1.0"
 
 [[package]]
 name = "once_cell"
