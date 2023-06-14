@@ -5,7 +5,7 @@ use plonky2::plonk::circuit_builder::CircuitBuilder;
 use plonky2::plonk::circuit_data::CircuitConfig;
 use plonky2::plonk::config::{GenericConfig, PoseidonGoldilocksConfig};
 
-mod halo2_example;
+pub mod n_th_root;
 
 // replay fibonacci with Plonky2
 fn main() -> Result<()> {

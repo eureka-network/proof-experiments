@@ -42,7 +42,7 @@ impl AccessSet {
         let public_key_index_bits = builder.split_le(public_key_index, self.tree_height());
         let zero = builder.zero();
 
-        builder.verify_merkle_proof_to_cap::<PoseidonHash> (
+        builder.verify_merkle_proof_to_cap::<PoseidonHash>(
             [private_key, [zero; 4]].concat(),
             &public_key_index_bits,
             &MerkleCapTarget(vec![merkle_root]),
@@ -50,7 +50,7 @@ impl AccessSet {
         );
 
         // Check nullifier
-        let should_be_nullifier = 
+        let should_be_nullifier =
             builder.hash_n_to_hash_no_pad::<PoseidonHash>([private_key, topic].concat());
         for i in 0..4 {
             builder.connect(nullifier.elements[i], should_be_nullifier.elements[i]);
@@ -61,9 +61,8 @@ impl AccessSet {
             topic,
             merkle_proof,
             private_key,
-            public_key_index
+            public_key_index,
         }
-
     }
 
     pub fn fill_semaphore_targets(
@@ -75,7 +74,7 @@ impl AccessSet {
         targets: SemaphoreTargets,
     ) {
         let SemaphoreTargets {
-            merkle_root: merkle_root,
+            merkle_root,
             topic: topic_target,
             merkle_proof: merkle_proof_target,
             private_key: private_key_target,

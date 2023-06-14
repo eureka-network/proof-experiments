@@ -1,12 +1,11 @@
 use anyhow::Result;
-use plonky2::field::goldilocks_field::GoldilocksField;
 use plonky2::hash::merkle_tree::MerkleTree;
 use plonky2::hash::poseidon::PoseidonHash;
 use plonky2::iop::witness::PartialWitness;
 use plonky2::plonk::circuit_builder::CircuitBuilder;
 use plonky2::plonk::circuit_data::{CircuitConfig, VerifierCircuitData};
-use plonky2::plonk::proof::ProofWithPublicInputs;
 use plonky2::plonk::config::Hasher;
+use plonky2::plonk::proof::ProofWithPublicInputs;
 
 use crate::signal::{Digest, Signal, C, F};
 
@@ -46,9 +45,15 @@ impl AccessSet {
         let config = CircuitConfig::standard_recursion_zk_config();
         let mut builder = CircuitBuilder::new(config);
         let mut partial_witness = PartialWitness::new();
-        
+
         let targets = self.semaphore_circuit(&mut builder);
-        self.fill_semaphore_targets(&mut partial_witness, private_key, topic, public_key_index, targets);
+        self.fill_semaphore_targets(
+            &mut partial_witness,
+            private_key,
+            topic,
+            public_key_index,
+            targets,
+        );
 
         let data = builder.build();
         let proof = data.prove(partial_witness).unwrap();
@@ -62,4 +67,3 @@ impl AccessSet {
         ))
     }
 }
-
