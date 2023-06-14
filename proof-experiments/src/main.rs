@@ -37,7 +37,6 @@ fn main() -> Result<()> {
     let mut partial_witness = PartialWitness::new();
     partial_witness.set_target(initial_a, F::ZERO);
     partial_witness.set_target(initial_b, F::ONE);
-    builder.register_public_input(cur_target);
 
     use std::time::Instant;
     let now = Instant::now();
